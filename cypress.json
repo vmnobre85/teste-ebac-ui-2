@@ -1,0 +1,7 @@
+{
+  "defaultCommandTimeout": 90000,
+  "responseTimeout": 90000,
+  "baseUrl": "http://lojaebac.ebaconline.art.br/",
+  "viewportWidth": 1200,
+  "viewportHeight": 1000
+}

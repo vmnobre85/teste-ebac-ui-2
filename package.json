@@ -1,0 +1,29 @@
+{
+  "name": "teste-ebac-ui",
+  "version": "1.0.0",
+  "description": "Ebac shop: http://lojaebac.ebaconline.art.br/",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cy:open": "npx cypress open",
+    "cy:run": "npx cypress run",
+    "cy:dashboard": "",
+    "cy:report": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "homepage": "",
+  "devDependencies": {
+    "@types/faker": "^6.6.9",
+    "cypress": "^9.5.1"
+  },
+  "dependencies": {
+    "@faker-js/faker": "^6.0.0-beta.0",
+    "faker": "^5.5.3"
+  }
+}

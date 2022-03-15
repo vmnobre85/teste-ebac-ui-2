@@ -31,38 +31,47 @@ Cypress.Commands.add('login', (usuario, senha) => {
     cy.get('.woocommerce-form > .button').click()
 });
 
-Cypress.Commands.add('adicionarProduto', (novoemail, password) => {
+Cypress.Commands.add('realizandoLogin', (novoemail, password) => {
     cy.get('.icon-user-unfollow').click()
     cy.get('#username').type(novoemail)
     cy.get('#password').type(password)
     cy.get('#rememberme').click()
-    cy.get('.woocommerce-form > .button').click()
+    cy.get('.woocommerce-form > .button').click()   
+});
+
+Cypress.Commands.add('adicionandoProduto01', (tamanho, cor, quantidade01) => {
     cy.get('#primary-menu > .menu-item-629 > a').click()
     cy.get('[class="product-block grid"]').first().click()
-    cy.get('.button-variable-item-S').click()
-    cy.get('.button-variable-item-Blue').click()
-    cy.get('.input-text').clear().type(2)
+    cy.get('.button-variable-item-'+ tamanho).click()
+    cy.get('.button-variable-item-'+ cor).click()
+    cy.get('.input-text').clear().type(quantidade01)
     cy.get('.single_add_to_cart_button').click()
-    cy.get('.woocommerce-message').should('contain', '2')
+    cy.get('.woocommerce-message').should('contain', quantidade01)
     cy.get('.woocommerce-message').should('contain', 'foram adicionados no seu carrinho.')
-    cy.get('.dropdown-toggle > .mini-cart-items').should('contain', 2)
+    cy.get('.dropdown-toggle > .mini-cart-items').should('contain', quantidade01)
+});
+
+Cypress.Commands.add('adicionandoProduto02', (tamanho, cor, quantidade01, quantidade02) => {
     cy.get('#primary-menu > .menu-item-629 > a').click()
     cy.get('[class="product-block grid"]').last().click()
-    cy.get('.button-variable-item-S').click()
-    cy.get(':nth-child(2) > .value > .variable-items-wrapper > .variable-item').click()
-    cy.get('.plus').click()
+    cy.get('.button-variable-item-'+ tamanho).click()
+    cy.get('.button-variable-item-'+ cor).click()
+    cy.get('.input-text').clear().type(quantidade02)
     cy.get('.single_add_to_cart_button').click()
-    cy.get('.dropdown-toggle > .mini-cart-items').should('contain', 4)
-    cy.get('.woocommerce-message').should('contain', '2')
+    cy.get('.woocommerce-message').should('contain', quantidade02)
+    cy.get('.dropdown-toggle > .mini-cart-items').should('contain', quantidade01 + quantidade02)
     cy.get('.woocommerce-message').should('contain', 'foram adicionados no seu carrinho.')
     cy.get('.woocommerce-message > .button').click()
 });
 
-Cypress.Commands.add('finalizandoVenda', (empresa, endereco, complemento, cidade, cep, telefone, informacoes, novoemail) => {
+Cypress.Commands.add('conferindoPedido', (quantidade01, quantidade02) => {
     cy.get('.page-title').should('contain', 'Carrinho')
-    cy.get(':nth-child(1) > .product-quantity > .quantity > .input-text').should('contain.value', 2)
-    cy.get(':nth-child(2) > .product-quantity > .quantity > .input-text').should('contain.value', 2)
+    cy.get(':nth-child(1) > .product-quantity > .quantity > .input-text').should('contain.value', quantidade01)
+    cy.get(':nth-child(2) > .product-quantity > .quantity > .input-text').should('contain.value', quantidade02)
     cy.get('.checkout-button').click()
+});
+
+Cypress.Commands.add('finalizandoVenda', (empresa, endereco, complemento, cidade, cep, telefone, informacoes, novoemail) => {
     cy.get('#billing_company').type(empresa)
     cy.get('#billing_address_1').type(endereco)
     cy.get('#billing_address_2').type(complemento)

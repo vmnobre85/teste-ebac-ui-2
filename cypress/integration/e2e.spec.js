@@ -7,12 +7,6 @@ var faker = require('@faker-js/faker')
 
 context('Exercicio - Testes End-to-end - Fluxo de pedido', () => {
     let novoemail = faker.faker.internet.email()
-    let tamanho01 = "L"
-    let tamanho02 = "XS"
-    let cor01 = "Red"
-    let cor02 = "Blue"
-    let quantidade01 = 2
-    let quantidade02 = 2
 
     before(() => {
         cy.visit('/')
@@ -30,9 +24,9 @@ context('Exercicio - Testes End-to-end - Fluxo de pedido', () => {
 
     it('Deve fazer um pedido na loja Ebac Shop de ponta a ponta', () => {
         cy.realizandoLogin(novoemail, Dados[0].password)
-        cy.adicionandoProduto01(tamanho01, cor01, quantidade01)
-        cy.adicionandoProduto02(tamanho02, cor02, quantidade01, quantidade02)
-        cy.conferindoPedido(quantidade01, quantidade02)
+        cy.adicionandoProduto01(Dados[0].tamanho01, Dados[0].cor01, Dados[0].quantidade01)
+        cy.adicionandoProduto02(Dados[0].tamanho02, Dados[0].cor02, Dados[0].quantidade01, Dados[0].quantidade02)
+        cy.conferindoPedido(Dados[0].quantidade01, Dados[0].quantidade02)
         cy.finalizandoVenda(Dados[0].empresa, Dados[0].endereco, Dados[0].complemento, Dados[0].cidade, Dados[0].cep, Dados[0].telefone, Dados[0].informacoes, novoemail)
     });
 
